@@ -10,6 +10,8 @@ public class Lexer {
 
     public static final int ID = 0;
 
+    public static final int CONSTANTE = 0;
+
     private int corrente = 0;
     private char caractere = ' ';
     private final String expr;
@@ -33,12 +35,19 @@ public class Lexer {
 
     public List<Token> tokenize() {
         List<Token> tokens = new ArrayList<>();
-
         caractere = expr.charAt(corrente);
 
-        if (isLetra()) {
-            Token id = new Token(ID, identificador());
-            tokens.add(id);
+        while (corrente <= posicaoUltimoCaractere) {
+
+            if (isLetra()) {
+                tokens.add(new Token(ID, identificador()));
+                continue;
+            }
+
+            if (isDigito()) {
+                tokens.add(new Token(CONSTANTE, constante()));
+                continue;
+            }
         }
 
         return tokens;
@@ -115,29 +124,35 @@ public class Lexer {
         return Character.isDigit(caractere);
     }
 
-    private float constante() {
-        int sinal = 1;
-        if (caractere == '-') {
-            proximo();
-            sinal = -1;
-        }
+    /**
+     * Recupera a constante iniciada na posição corrente.
+     *
+     * @return Sequência de caracteres correspondente à constante.
+     */
+    private String constante() {
 
+        boolean semPonto = true;
         int inicio = corrente;
-        if ((Character.isDigit(caractere)) || caractere == '.') {
-            while (Character.isDigit(caractere) || caractere == '.') {
-                if (corrente == posicaoUltimoCaractere) {
-                    break;
-                }
 
-                caractere = expr.charAt(++corrente);
+        while (isDigito()) {
+            if (corrente == posicaoUltimoCaractere) {
+                // posiciona no início do próximo token
+                // (que, nesse caso, não existe)
+                corrente = corrente + 1;
+                break;
             }
 
-            int fim = Character.isDigit(caractere) ? corrente + 1 : corrente;
-            String doubleStr = expr.substring(inicio, fim);
-            return sinal * (float)Double.parseDouble(doubleStr);
+            caractere = expr.charAt(++corrente);
+            if (caractere == '.' && semPonto) {
+                semPonto = false;
+
+                // Vamos para o próximo símbolo da entrada
+                caractere = expr.charAt(++corrente);
+                continue;
+            }
         }
 
-        throw new IllegalArgumentException("constante esperada");
+        return expr.substring(inicio, corrente);
     }
 
     /**
@@ -148,19 +163,22 @@ public class Lexer {
     private String identificador() {
         int inicio = corrente;
 
+        // Assegura que inicia por letra
         if (!isLetra()) {
             return null;
         }
 
         while (isLetra() || isDigito()) {
             if (corrente == posicaoUltimoCaractere) {
+                // indica fim do token corrente
+                corrente = corrente + 1;
                 break;
             }
 
             caractere = expr.charAt(++corrente);
         }
 
-        return expr.substring(inicio, corrente + 1);
+        return expr.substring(inicio, corrente);
     }
 
     /**

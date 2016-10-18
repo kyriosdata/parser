@@ -32,11 +32,25 @@ public class LexerTest {
         verificaUmUnicoId("x1");
     }
 
+    @Test
+    public void umaUnicaConstante() {
+        verificaUmaUnicaConstante("0");
+        verificaUmaUnicaConstante("10");
+        verificaUmaUnicaConstante("1.23");
+    }
+
     private void verificaUmUnicoId(String identificador) {
         List<Token> tokens = new Lexer(identificador).tokenize();
         assertEquals(1, tokens.size());
         assertEquals(Lexer.ID, tokens.get(0).getTipo());
         assertEquals(identificador, tokens.get(0).getElemento());
+    }
+
+    private void verificaUmaUnicaConstante(String constante) {
+        List<Token> tokens = new Lexer(constante).tokenize();
+        assertEquals(1, tokens.size());
+        assertEquals(Lexer.CONSTANTE, tokens.get(0).getTipo());
+        assertEquals(constante, tokens.get(0).getElemento());
     }
 }
 
