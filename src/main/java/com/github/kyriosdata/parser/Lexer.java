@@ -60,73 +60,56 @@ public class Lexer {
 
             if (isAbre()) {
                 tokens.add(new Token(ABRE, "("));
+                proximoCaractere();
+                continue;
+            }
+
+            if (isFecha()) {
+                tokens.add(new Token(FECHA, ")"));
+                proximoCaractere();
+                continue;
+            }
+
+            if (isOperador()) {
+                tokens.add(new Token(OPERADOR, operador()));
                 continue;
             }
 
             // Se é espaço, então é um separador de tokens.
             if (caractere == ' ') {
-                corrente = corrente + 1;
-                if (corrente <= posicaoUltimoCaractere) {
-                    caractere = expr.charAt(corrente);
-                }
+                proximoCaractere();
 
                 continue;
             }
 
             // Se não é nenhum dos casos acima, então é desconhecido.
             tokens.add(new Token(DESCONHECIDO, Character.toString(caractere)));
-            corrente = corrente + 1;
-            if (corrente <= posicaoUltimoCaractere) {
-                caractere = expr.charAt(corrente);
-            }
+            proximoCaractere();
         }
 
         return tokens;
+    }
+
+    private void proximoCaractere() {
+        corrente = corrente + 1;
+        if (corrente <= posicaoUltimoCaractere) {
+            caractere = expr.charAt(corrente);
+        }
     }
 
     private boolean isAbre() {
         return caractere == '(';
     }
 
-    private String abre() {
-        corrente = corrente + 1;
-        if (corrente <= posicaoUltimoCaractere) {
-            caractere = expr.charAt(corrente);
-        }
-
-        return "(";
+    private boolean isFecha() {
+        return caractere == ')';
     }
 
-    private void fechaParenteses() {
-        eliminaBrancos();
+    private String operador() {
+        String operador = Character.toString(caractere);
+        proximoCaractere();
 
-        if (caractere != ')') {
-            throw new IllegalArgumentException("Esperado fecha parenteses: " + caractere);
-        }
-
-        if (corrente < posicaoUltimoCaractere) {
-            caractere = expr.charAt(++corrente);
-        }
-    }
-
-    private void consome(char esperado) {
-        if (caractere != esperado) {
-            throw new IllegalArgumentException("Esperado " + caractere);
-        }
-    }
-
-    private char getOperador() {
-        eliminaBrancos();
-        if (isOperador()) {
-            char operador = caractere;
-
-            // consome operador
-            caractere = expr.charAt(++corrente);
-
-            return operador;
-        }
-
-        throw new IllegalArgumentException(" Operador esperado: " + caractere);
+        return operador;
     }
 
     /**
@@ -136,28 +119,13 @@ public class Lexer {
      * operador e {@code false}, caso contrário.
      */
     private boolean isOperador() {
-        return caractere == '+' || caractere == '-' ||
-                caractere == '*' || caractere == '/' ||
-                caractere == '&' || caractere == '|';
-    }
-
-    private boolean isExprEntreParenteses() {
-        return caractere == '(';
-    }
-
-    /**
-     * Pelo menos um dígito, possivelmente precedido
-     * pelo sinal de menos identifica uma constante.
-     *
-     * @return {@code true} se na posição corrente da
-     * expressão encontra-se uma constante.
-     */
-    private boolean isConstante() {
-        if (Character.isDigit(caractere) || caractere == '-') {
-            return true;
-        }
-
-        return false;
+        return caractere == '+'
+                || caractere == '-'
+                || caractere == '*'
+                || caractere == '/'
+                || caractere == '&'
+                || caractere == '|'
+                || caractere == '=';
     }
 
     private boolean isLetra() {
@@ -208,11 +176,6 @@ public class Lexer {
     private String identificador() {
         int inicio = corrente;
 
-        // Assegura que inicia por letra
-        if (!isLetra()) {
-            return null;
-        }
-
         while (isLetra() || isDigito()) {
             if (corrente == posicaoUltimoCaractere) {
                 // indica fim do token corrente
@@ -224,44 +187,5 @@ public class Lexer {
         }
 
         return expr.substring(inicio, corrente);
-    }
-
-    /**
-     * Elimina caracteres brancos (que não fazem parte
-     * de token). Método seguinte deve recuperar próximo
-     * token via método {@link #proximo()}.
-     */
-    private void eliminaBrancos() {
-        while (isBranco(caractere)) {
-            if (isProximoCaractereBranco()) {
-                caractere = expr.charAt(++corrente);
-            } else {
-                return;
-            }
-        }
-    }
-
-    private boolean isProximoCaractereBranco() {
-        if (corrente < posicaoUltimoCaractere) {
-            return isBranco(expr.charAt(corrente + 1));
-        }
-
-        return false;
-    }
-
-    private boolean isBranco(char caractere) {
-        return caractere == ' ' || caractere == '\t';
-    }
-
-    private void proximo() {
-        if (isBranco(caractere)) {
-            eliminaBrancos();
-        } else {
-            if (corrente < posicaoUltimoCaractere) {
-                caractere = expr.charAt(++corrente);
-            } else {
-                throw new IllegalArgumentException("fim inesperado");
-            }
-        }
     }
 }

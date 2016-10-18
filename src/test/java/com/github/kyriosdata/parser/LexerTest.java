@@ -10,6 +10,53 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class LexerTest {
 
     @Test
+    public void algunsTokens() {
+        String sequencia = "a23(3)+-*/|&=3.45@";
+        List<Token> tokens = new Lexer(sequencia).tokenize();
+
+        assertEquals(13, tokens.size());
+
+        assertEquals("a23", tokens.get(0).getElemento());
+        assertEquals(Lexer.ID, tokens.get(0).getTipo());
+
+        assertEquals("(", tokens.get(1).getElemento());
+        assertEquals(Lexer.ABRE, tokens.get(1).getTipo());
+
+        assertEquals("3", tokens.get(2).getElemento());
+        assertEquals(Lexer.CONSTANTE, tokens.get(2).getTipo());
+
+        assertEquals(")", tokens.get(3).getElemento());
+        assertEquals(Lexer.FECHA, tokens.get(3).getTipo());
+
+        assertEquals("+", tokens.get(4).getElemento());
+        assertEquals(Lexer.OPERADOR, tokens.get(4).getTipo());
+
+        assertEquals("-", tokens.get(5).getElemento());
+        assertEquals(Lexer.OPERADOR, tokens.get(5).getTipo());
+
+        assertEquals("*", tokens.get(6).getElemento());
+        assertEquals(Lexer.OPERADOR, tokens.get(6).getTipo());
+
+        assertEquals("/", tokens.get(7).getElemento());
+        assertEquals(Lexer.OPERADOR, tokens.get(7).getTipo());
+
+        assertEquals("|", tokens.get(8).getElemento());
+        assertEquals(Lexer.OPERADOR, tokens.get(8).getTipo());
+
+        assertEquals("&", tokens.get(9).getElemento());
+        assertEquals(Lexer.OPERADOR, tokens.get(9).getTipo());
+
+        assertEquals("=", tokens.get(10).getElemento());
+        assertEquals(Lexer.OPERADOR, tokens.get(10).getTipo());
+
+        assertEquals("3.45", tokens.get(11).getElemento());
+        assertEquals(Lexer.CONSTANTE, tokens.get(11).getTipo());
+
+        assertEquals("@", tokens.get(12).getElemento());
+        assertEquals(Lexer.DESCONHECIDO, tokens.get(12).getTipo());
+    }
+
+    @Test
     public void expressaoNullOuVaziaGeraExcecao() {
         assertThrows(IllegalArgumentException.class, () -> new Lexer(null));
         assertThrows(IllegalArgumentException.class, () -> new Lexer(""));
