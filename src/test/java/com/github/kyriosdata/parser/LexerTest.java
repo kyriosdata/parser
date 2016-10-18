@@ -22,6 +22,29 @@ public class LexerTest {
         assertEquals(-1, " a ".replaceAll("\\s", "").indexOf(" "));
         assertEquals(-1, " a + b - x / 8 ".replaceAll("\\s", "").indexOf(" "));
         assertEquals(-1, "       8 ".replaceAll("\\s", "").indexOf(" "));
+        assertEquals("a 1", "a 1".replaceAll("\\s\\s", " "));
+        assertEquals("a 1", "a  1".replaceAll("\\s\\s", " "));
+        assertEquals("a 1", "a  \t 1".replaceAll("\\s\\s*", " "));
+        assertEquals(" a 1 ", "\t\t \ta  \t 1\t".replaceAll("\\s\\s*", " "));
+        assertEquals("a", " a ".trim());
+    }
+
+    @Test
+    public void quatroTokens() {
+        List<Token> tokens = new Lexer("\ta\t 1\t\t  \tb  3").tokenize();
+        assertEquals(4, tokens.size());
+
+        assertEquals("a", tokens.get(0).getElemento());
+        assertEquals(Lexer.ID, tokens.get(0).getTipo());
+
+        assertEquals("1", tokens.get(1).getElemento());
+        assertEquals(Lexer.CONSTANTE, tokens.get(1).getTipo());
+
+        assertEquals("b", tokens.get(2).getElemento());
+        assertEquals(Lexer.ID, tokens.get(2).getTipo());
+
+        assertEquals("3", tokens.get(3).getElemento());
+        assertEquals(Lexer.CONSTANTE, tokens.get(3).getTipo());
     }
 
     @Test
