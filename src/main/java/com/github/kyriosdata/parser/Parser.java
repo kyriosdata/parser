@@ -1,28 +1,20 @@
 package com.github.kyriosdata.parser;
 
+import java.util.List;
+
 /**
  * Analisador sintático descendente recursivo para expressões matemáticas.
  */
 public class Parser {
 
     private int corrente = 0;
-    private char caractere = ' ';
-    private String expr;
-    private int ultimaPosicao;
+    private int ultimoToken;
+    private List<Token> tokens;
+    private char caractere;
 
-    public Parser(String expressao) {
-        if (expressao == null) {
-            throw new IllegalArgumentException("expressão null");
-        }
-
-        expr = expressao.trim();
-        ultimaPosicao = expr.length() - 1;
-
-        if (ultimaPosicao < 0) {
-            throw new IllegalArgumentException("apenas espaço(s)");
-        }
-
-        caractere = expr.charAt(corrente);
+    public Parser(List<Token> simbolos) {
+        tokens = simbolos;
+        ultimoToken = tokens.size() - 1;
     }
 
     /**
@@ -34,7 +26,7 @@ public class Parser {
     public Expressao expressao() {
         Expressao analisada = expr();
 
-        if (corrente < ultimaPosicao) {
+        if (corrente < ultimoToken) {
             return complementoExpr(analisada);
         }
 
@@ -46,13 +38,12 @@ public class Parser {
      * @return
      */
     private Expressao expr() {
-        proximo();
 
         if (isConstante()) {
             return new Constante(constante());
         }
 
-        if (isLetra()) {
+        if (isIdentificador()) {
             return new Variavel(variavel());
         }
 
@@ -60,20 +51,10 @@ public class Parser {
             return exprEntreParenteses();
         }
 
-        throw new IllegalArgumentException("Nao esperado: " + caractere);
+        throw new IllegalArgumentException("Nao esperado: "
+                + tokens.get(corrente).getElemento());
     }
 
-    private void fechaParenteses() {
-        eliminaBrancos();
-
-        if (caractere != ')') {
-            throw new IllegalArgumentException("Esperado fecha parenteses: " + caractere);
-        }
-
-        if (corrente < ultimaPosicao) {
-            caractere = expr.charAt(++corrente);
-        }
-    }
 
     private void consome(char esperado) {
         if (caractere != esperado) {
@@ -81,18 +62,12 @@ public class Parser {
         }
     }
 
-    private char getOperador() {
-        eliminaBrancos();
-        if (isOperador()) {
-            char operador = caractere;
+    private char operador() {
+        return proximoToken().getElemento().charAt(0);
+    }
 
-            // consome operador
-            caractere = expr.charAt(++corrente);
-
-            return operador;
-        }
-
-        throw new IllegalArgumentException(" Operador esperado: " + caractere);
+    private Token proximoToken() {
+        return tokens.get(corrente++);
     }
 
     /**
@@ -102,9 +77,7 @@ public class Parser {
      * operador e {@code false}, caso contrário.
      */
     private boolean isOperador() {
-        return caractere == '+' || caractere == '-' ||
-                caractere == '*' || caractere == '/' ||
-                caractere == '&' || caractere == '|';
+        return tokens.get(corrente).getTipo() == Lexer.OPERADOR;
     }
 
     private boolean isExprEntreParenteses() {
@@ -112,22 +85,16 @@ public class Parser {
     }
 
     /**
-     * Pelo menos um dígito, possivelmente precedido
-     * pelo sinal de menos identifica uma constante.
+     * Verifica se o token corrente é uma constante.
      *
-     * @return {@code true} se na posição corrente da
-     * expressão encontra-se uma constante.
+     * @return {@code true} se o token corrente é uma constante.
      */
     private boolean isConstante() {
-        if (Character.isDigit(caractere) || caractere == '-') {
-            return true;
-        }
-
-        return false;
+        return tokens.get(corrente).getTipo() == Lexer.CONSTANTE;
     }
 
-    private boolean isLetra() {
-        return Character.isLetter(caractere);
+    private boolean isIdentificador() {
+        return tokens.get(corrente).getTipo() == Lexer.ID;
     }
 
     private Expressao exprEntreParenteses() {
@@ -137,8 +104,6 @@ public class Parser {
         Expressao exp1 = expr();
 
         Expressao comComplemento = complementoExpr(exp1);
-
-        fechaParenteses();
 
         return comComplemento;
     }
@@ -152,7 +117,7 @@ public class Parser {
      * concatenada com o Operador Expr.
      */
     private Expressao complementoExpr(Expressao expr1) {
-        char operador = getOperador();
+        char operador = operador();
 
         Expressao exp2 = expr();
 
@@ -170,86 +135,16 @@ public class Parser {
             case '|':
                 return new Soma(expr1, exp2);
             default:
-                throw new IllegalArgumentException("Operador invalido:" + caractere);
+                throw new IllegalArgumentException("Operador invalido:" + operador);
         }
     }
 
     private float constante() {
-        int sinal = 1;
-        if (caractere == '-') {
-            proximo();
-            sinal = -1;
-        }
-
-        int inicio = corrente;
-        if ((Character.isDigit(caractere)) || caractere == '.') {
-            while (Character.isDigit(caractere) || caractere == '.') {
-                if (corrente == ultimaPosicao) {
-                    break;
-                }
-
-                caractere = expr.charAt(++corrente);
-            }
-
-            int fim = Character.isDigit(caractere) ? corrente + 1 : corrente;
-            String doubleStr = expr.substring(inicio, fim);
-            return sinal * (float)Double.parseDouble(doubleStr);
-        }
-
-        throw new IllegalArgumentException("constante esperada");
+        return (float)Double.parseDouble(proximoToken().getElemento());
     }
 
     private String variavel() {
-        int inicio = corrente;
-
-        while (isLetra()) {
-            if (corrente == ultimaPosicao) {
-                break;
-            }
-
-            caractere = expr.charAt(++corrente);
-        }
-
-        int fim = isLetra() ? corrente + 1 : corrente;
-        return expr.substring(inicio, fim);
+        return proximoToken().getElemento();
     }
 
-    /**
-     * Elimina caracteres brancos (que não fazem parte
-     * de token). Método seguinte deve recuperar próximo
-     * token via método {@link #proximo()}.
-     */
-    private void eliminaBrancos() {
-        while (isBranco(caractere)) {
-            if (isProximoCaractereBranco()) {
-                caractere = expr.charAt(++corrente);
-            } else {
-                return;
-            }
-        }
-    }
-
-    private boolean isProximoCaractereBranco() {
-        if (corrente < ultimaPosicao) {
-            return isBranco(expr.charAt(corrente + 1));
-        }
-
-        return false;
-    }
-
-    private boolean isBranco(char caractere) {
-        return caractere == ' ' || caractere == '\t';
-    }
-
-    private void proximo() {
-        if (isBranco(caractere)) {
-            eliminaBrancos();
-        } else {
-            if (corrente < ultimaPosicao) {
-                caractere = expr.charAt(++corrente);
-            } else {
-                throw new IllegalArgumentException("fim inesperado");
-            }
-        }
-    }
 }

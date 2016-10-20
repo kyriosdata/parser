@@ -14,7 +14,7 @@ class Constante implements Expressao {
 
     @Override
     public float valor(Map<String, Float> contexto) {
-        return 0;
+        return constante;
     }
 
     @Override
