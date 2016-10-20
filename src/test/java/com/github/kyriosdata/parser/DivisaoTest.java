@@ -35,7 +35,11 @@ public class DivisaoTest {
         ctx.put("b", 2f);
 
         assertEquals(0.5f, variaveis("a", "b").valor(ctx), 0.1d);
-        assertEquals(0f, variaveis("a", "b").valor(), 0.1d);
+    }
+
+    @Test
+    public void denominadorZeroDivisaoZero() {
+        assertEquals(0f, constantes(10, 0).valor(), 0.1d);
     }
 
     private Divisao constantes(float p1, float p2) {
