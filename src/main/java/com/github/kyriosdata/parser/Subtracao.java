@@ -3,7 +3,7 @@ package com.github.kyriosdata.parser;
 import java.util.Map;
 
 /**
- * Created by fabio_000 on 18/10/2016.
+ * Expressão definida por subtração entre dois números.
  */
 class Subtracao implements Expressao {
 
@@ -11,6 +11,10 @@ class Subtracao implements Expressao {
     private final Expressao parcelaDois;
 
     public Subtracao(Expressao p1, Expressao p2) {
+        if (p1 == null || p2 == null) {
+            throw new IllegalArgumentException("p1 ou p2 é null");
+        }
+
         parcelaUm = p1;
         parcelaDois = p2;
     }

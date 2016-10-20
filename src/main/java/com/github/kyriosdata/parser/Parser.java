@@ -27,14 +27,14 @@ public class Parser {
         Expressao analisada = expr();
 
         if (corrente < ultimoToken) {
-            return complementoExpr(analisada);
+            return complemento(analisada);
         }
 
         return analisada;
     }
 
     /**
-     * Expr ::= Constante | Variavel | (Expr Op Expr)
+     * expr ::= constante | identificador | (expr Op expr)
      * @return
      */
     private Expressao expr() {
@@ -47,7 +47,7 @@ public class Parser {
             return new Variavel(variavel());
         }
 
-        if (isExprEntreParenteses()) {
+        if (isAbre()) {
             return exprEntreParenteses();
         }
 
@@ -67,6 +67,11 @@ public class Parser {
     }
 
     private Token proximoToken() {
+        if (corrente > ultimoToken) {
+            String msg = "fim inesperado no token " + (corrente - 1);
+            throw new IllegalArgumentException(msg);
+        }
+
         return tokens.get(corrente++);
     }
 
@@ -80,8 +85,8 @@ public class Parser {
         return tokens.get(corrente).getTipo() == Lexer.OPERADOR;
     }
 
-    private boolean isExprEntreParenteses() {
-        return caractere == '(';
+    private boolean isAbre() {
+        return tokens.get(corrente).getTipo() == Lexer.ABRE;
     }
 
     /**
@@ -97,26 +102,45 @@ public class Parser {
         return tokens.get(corrente).getTipo() == Lexer.ID;
     }
 
+    /**
+     * exprEntreParenteses ::= ( expr complemento )
+     * @return
+     */
     private Expressao exprEntreParenteses() {
-        // consome '('
-        consome('(');
+        if (!isAbre()) {
+            throw new IllegalArgumentException("esperado (");
+        }
+
+        // Consome '('
+        proximoToken();
 
         Expressao exp1 = expr();
 
-        Expressao comComplemento = complementoExpr(exp1);
+        Expressao complementoExpr = complemento(exp1);
 
-        return comComplemento;
+        Token token = proximoToken();
+        if (token.getTipo() != Lexer.FECHA) {
+            throw new IllegalArgumentException("esperado )");
+        }
+
+        return complementoExpr;
     }
 
     /**
-     * Operador Expr
+     * complemento ::= operador expr
      *
      * @param expr1 Primeiro operando.
      *
      * @return Expressão formada pelo primeiro operando
      * concatenada com o Operador Expr.
      */
-    private Expressao complementoExpr(Expressao expr1) {
+    private Expressao complemento(Expressao expr1) {
+        if (!isOperador()) {
+            String tk = tokens.get(corrente).getElemento();
+            String msg = "esperado operador recebido " + tk;
+            throw new IllegalArgumentException(msg);
+        }
+
         char operador = operador();
 
         Expressao exp2 = expr();

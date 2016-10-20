@@ -12,6 +12,10 @@ class Multiplicacao implements Expressao {
     private final Expressao multiplicador;
 
     public Multiplicacao(Expressao p1, Expressao p2) {
+        if (p1 == null || p2 == null) {
+            throw new IllegalArgumentException("p1 ou p2 é null");
+        }
+
         multiplicando = p1;
         multiplicador = p2;
     }

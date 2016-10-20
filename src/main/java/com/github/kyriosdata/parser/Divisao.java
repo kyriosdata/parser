@@ -11,6 +11,10 @@ class Divisao implements Expressao {
     private final Expressao denominador;
 
     public Divisao(Expressao p1, Expressao p2) {
+        if (p1 == null || p2 == null) {
+            throw new IllegalArgumentException("p1 ou p2 é null");
+        }
+
         numerador = p1;
         denominador = p2;
     }
