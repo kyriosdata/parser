@@ -11,7 +11,9 @@ Analisador léxico, sintático e avaliador de expressões matemáticas.
 
 ## Como usar?
 
-Basta inserir a dependencia abaixo em seu arquivo pom.xml (maven):
+### Obtenha a biblioteca
+
+Seu projeto precisa de uma única dependência, indicada abaixo. Alternativamente você pode baixar o arquivo jar correspondente ([download](/com/github/kyriosdata/parser/parser/1.0.0/parser-1.0.0.jar)).
 
 <pre>
 &lt;dependency&gt;
@@ -19,4 +21,10 @@ Basta inserir a dependencia abaixo em seu arquivo pom.xml (maven):
   &lt;artifactId&gt;parser&lt;/artifactId&gt;
   &lt;version&gt;1.0.0&lt;/version&gt;
 &lt;/dependency&gt;
+</pre>
+
+### Importe necessário
+
+<pre>
+import com.github.kyriosdata.parser;
 </pre>
