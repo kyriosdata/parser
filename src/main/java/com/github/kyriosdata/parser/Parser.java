@@ -176,12 +176,10 @@ public class Parser {
             return new Soma(e1, e2);
         } else if (Lexer.SUBTRACAO.equals(operador)) {
             return new Subtracao(e1, e2);
-        } else if (Lexer.PRODUTO.equals(operador)) {
+        } else if (Lexer.PRODUTO.equals(operador) || Lexer.E.equals(operador)) {
             return new Produto(e1, e2);
         } else if (Lexer.DIVISAO.equals(operador)) {
             return new Divisao(e1, e2);
-        } else if (Lexer.E.equals(operador)) {
-            return new Produto(e1, e2);
         }
 
         // Se não é um dos casos verificados acima,
