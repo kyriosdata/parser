@@ -131,9 +131,8 @@ public class Parser {
      * @return Expressão entre parênteses.
      */
     private Expressao exprEntreParenteses() {
-        if (!isAbre()) {
-            throw new IllegalArgumentException("esperado (");
-        }
+        // So se chega nesse ponto se verificado
+        // que token é abre parênteses.
 
         // Consome '('
         proximoToken();

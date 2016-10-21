@@ -21,6 +21,8 @@ public class ParserTest {
         assertThrows(iae, () -> exprPara("="));
         assertThrows(iae, () -> exprPara("x -"));
         assertThrows(iae, () -> exprPara("x - 1 + 1"));
+        assertThrows(iae, () -> exprPara("(x - 1 *"));
+        assertThrows(iae, () -> exprPara("x ( a"));
     }
 
     @Test
