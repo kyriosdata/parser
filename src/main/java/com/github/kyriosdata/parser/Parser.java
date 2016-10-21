@@ -184,12 +184,12 @@ public class Parser {
             return new Produto(e1, e2);
         } else if (Lexer.OU.equals(operador)) {
             return new Soma(e1, e2);
-        } else if (Lexer.IGUAL.equals(operador)) {
-            return new Igual(e1, e2);
-        } else {
-            String msg = "operador inválido " + operador;
-            throw new IllegalArgumentException(msg);
         }
+
+        // Se não é um dos casos verificados acima,
+        // então necessariamente é igual.
+        // Método chamado apenas com operador válido.
+        return new Igual(e1, e2);
     }
 
     /**
