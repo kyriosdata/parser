@@ -119,7 +119,7 @@
 
     </dependencies>
 
-    <!-- mvn site (gera relatório em Project Report -->
+    <!-- mvn site (gera relatório) -->
     <reporting>
         <plugins>
             <plugin>
