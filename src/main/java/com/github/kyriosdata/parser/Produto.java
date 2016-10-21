@@ -6,12 +6,12 @@ import java.util.Map;
  * Expressão formada por dois operandos, multiplicando e
  * operador, cujo resultado é o produto deles.
  */
-class Multiplicacao implements Expressao {
+class Produto implements Expressao {
 
     private final Expressao multiplicando;
     private final Expressao multiplicador;
 
-    public Multiplicacao(Expressao p1, Expressao p2) {
+    public Produto(Expressao p1, Expressao p2) {
         if (p1 == null || p2 == null) {
             throw new IllegalArgumentException("p1 ou p2 é null");
         }

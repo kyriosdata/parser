@@ -20,6 +20,15 @@ public class Lexer {
 
     public static final int DESCONHECIDO = 5;
 
+    public static final String SOMA = "+";
+    public static final String SUBTRACAO = "-";
+    public static final String PRODUTO = "*";
+    public static final String DIVISAO = "/";
+    public static final String E = "&";
+    public static final String OU = "|";
+    public static final String IGUAL = "=";
+
+
     private int corrente = 0;
     private char caractere = ' ';
     private final String expr;
@@ -119,13 +128,15 @@ public class Lexer {
      * operador e {@code false}, caso contrário.
      */
     private boolean isOperador() {
-        return caractere == '+'
-                || caractere == '-'
-                || caractere == '*'
-                || caractere == '/'
-                || caractere == '&'
-                || caractere == '|'
-                || caractere == '=';
+        String supostoOperador = Character.toString(caractere);
+        String ops[] = { SOMA, SUBTRACAO, PRODUTO, DIVISAO, E, OU, IGUAL };
+        for(String operador : ops) {
+            if (operador.equals(supostoOperador)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     private boolean isLetra() {

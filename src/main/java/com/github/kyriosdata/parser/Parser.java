@@ -3,7 +3,9 @@ package com.github.kyriosdata.parser;
 import java.util.List;
 
 /**
- * Analisador sintático descendente recursivo para expressões matemáticas.
+ * Analisador sintático descendente recursivo para expressões
+ * matemáticas.
+ *
  */
 public class Parser {
 
@@ -11,6 +13,14 @@ public class Parser {
     private int ultimoToken;
     private List<Token> tokens;
 
+    /**
+     * Cria analisador sintático para a
+     * sequência de tokens fornecida como
+     * entrada.
+     *
+     * @param simbolos Sequência de tokens sobre a
+     *                 qual a análise será realizada.
+     */
     public Parser(List<Token> simbolos) {
         tokens = simbolos;
         ultimoToken = tokens.size() - 1;
@@ -25,8 +35,19 @@ public class Parser {
     public Expressao expressao() {
         Expressao analisada = expr();
 
+        if (corrente == ultimoToken) {
+            String msg = "simbolo inesperado " + simbolo();
+            throw new IllegalArgumentException(msg);
+        }
+
         if (corrente < ultimoToken) {
-            return complemento(analisada);
+            Expressao comComplemento = complemento(analisada);
+            if (corrente <= ultimoToken) {
+                String msg = "token nao esperado " + simbolo();
+                throw new IllegalArgumentException(msg);
+            }
+
+            return comComplemento;
         }
 
         return analisada;
@@ -37,13 +58,16 @@ public class Parser {
      * @return
      */
     private Expressao expr() {
+        if (corrente > ultimoToken) {
+            throw new IllegalArgumentException("expressao esperada");
+        }
 
         if (isConstante()) {
             return new Constante(constante());
         }
 
         if (isIdentificador()) {
-            return new Variavel(variavel());
+            return new Variavel(simbolo());
         }
 
         if (isAbre()) {
@@ -52,10 +76,6 @@ public class Parser {
 
         throw new IllegalArgumentException("Nao esperado: "
                 + tokens.get(corrente).getElemento());
-    }
-
-    private char operador() {
-        return proximoToken().getElemento().charAt(0);
     }
 
     private Token proximoToken() {
@@ -77,6 +97,12 @@ public class Parser {
         return tokens.get(corrente).getTipo() == Lexer.OPERADOR;
     }
 
+    /**
+     * Verifica se token corrente é abre parênteses.
+     *
+     * @return {@code true} se o token corrente é um abre
+     * parênteses, e {@code false}, caso contrário.
+     */
     private boolean isAbre() {
         return tokens.get(corrente).getTipo() == Lexer.ABRE;
     }
@@ -90,13 +116,19 @@ public class Parser {
         return tokens.get(corrente).getTipo() == Lexer.CONSTANTE;
     }
 
+    /**
+     * Verifica se o token corrente é um identificador.
+     *
+     * @return {@code true} se o token corrente é um identificador.
+     */
     private boolean isIdentificador() {
         return tokens.get(corrente).getTipo() == Lexer.ID;
     }
 
     /**
      * exprEntreParenteses ::= ( expr complemento )
-     * @return
+     *
+     * @return Expressão entre parênteses.
      */
     private Expressao exprEntreParenteses() {
         if (!isAbre()) {
@@ -133,34 +165,50 @@ public class Parser {
             throw new IllegalArgumentException(msg);
         }
 
-        char operador = operador();
+        String operador = simbolo();
 
-        Expressao exp2 = expr();
+        Expressao expr2 = expr();
 
-        switch (operador) {
-            case '+':
-                return new Soma(expr1, exp2);
-            case '-':
-                return new Subtracao(expr1, exp2);
-            case '*':
-                return new Multiplicacao(expr1, exp2);
-            case '/':
-                return new Divisao(expr1, exp2);
-            case '&':
-                return new Multiplicacao(expr1, exp2);
-            case '|':
-                return new Soma(expr1, exp2);
-            default:
-                throw new IllegalArgumentException("Operador invalido:" + operador);
+        return montaExpressao(expr1, operador, expr2);
+    }
+
+    private Expressao montaExpressao(Expressao e1, String operador, Expressao e2) {
+        if (Lexer.SOMA.equals(operador)) {
+            return new Soma(e1, e2);
+        } else if (Lexer.SUBTRACAO.equals(operador)) {
+            return new Subtracao(e1, e2);
+        } else if (Lexer.PRODUTO.equals(operador)) {
+            return new Produto(e1, e2);
+        } else if (Lexer.DIVISAO.equals(operador)) {
+            return new Divisao(e1, e2);
+        } else if (Lexer.E.equals(operador)) {
+            return new Produto(e1, e2);
+        } else if (Lexer.OU.equals(operador)) {
+            return new Soma(e1, e2);
+        } else if (Lexer.IGUAL.equals(operador)) {
+            return new Igual(e1, e2);
+        } else {
+            String msg = "operador inválido " + operador;
+            throw new IllegalArgumentException(msg);
         }
     }
 
+    /**
+     * Obtém o valor da constante (token corrente).
+     *
+     * @return Valor {@code float} correspondente à constante
+     * (token corrente).
+     */
     private float constante() {
-        return (float)Double.parseDouble(proximoToken().getElemento());
+        return (float)Double.parseDouble(simbolo());
     }
 
-    private String variavel() {
+    /**
+     * Recupera símbolo do token corrente.
+     *
+     * @return Símbolo do token corrente.
+     */
+    private String simbolo() {
         return proximoToken().getElemento();
     }
-
 }

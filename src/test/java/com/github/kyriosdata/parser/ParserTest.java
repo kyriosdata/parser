@@ -7,8 +7,21 @@ import java.util.List;
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class ParserTest {
+
+    @Test
+    public void expressoesInvalidas() {
+        Class<IllegalArgumentException> iae = IllegalArgumentException.class;
+
+        assertThrows(iae, () -> exprPara("("));
+        assertThrows(iae, () -> exprPara(")"));
+        assertThrows(iae, () -> exprPara("+"));
+        assertThrows(iae, () -> exprPara("="));
+        assertThrows(iae, () -> exprPara("x -"));
+        assertThrows(iae, () -> exprPara("x - 1 + 1"));
+    }
 
     @Test
     public void expressoesUmaConstante() {
@@ -88,12 +101,9 @@ public class ParserTest {
         assertEquals(1d, exprPara("v & v").valor(ctx), 0.001d);
         assertEquals(0d, exprPara("f | f").valor(ctx), 0.001d);
         assertEquals(2d, exprPara("v | v").valor(ctx), 0.001d);
-    }
-
-    private Expressao exprPara(String expressao) {
-        List<Token> tokens = new Lexer(expressao).tokenize();
-        Parser parser = new Parser(tokens);
-        return parser.expressao();
+        assertEquals(1d, exprPara("v = v").valor(ctx), 0.001d);
+        assertEquals(0d, exprPara("v = f").valor(ctx), 0.001d);
+        assertEquals(1d, exprPara("f = f").valor(ctx), 0.001d);
     }
 
     @Test
@@ -119,6 +129,12 @@ public class ParserTest {
         ctx.put("a", 10f);
 
         assertEquals(10d, exprPara("(a - 9) * (10.2 - 0.2)").valor(ctx), 0.001d);
+    }
+
+    private Expressao exprPara(String expressao) {
+        List<Token> tokens = new Lexer(expressao).tokenize();
+        Parser parser = new Parser(tokens);
+        return parser.expressao();
     }
 }
 

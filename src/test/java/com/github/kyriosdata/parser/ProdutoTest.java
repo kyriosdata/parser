@@ -8,18 +8,18 @@ import java.util.Map;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class MultiplicacaoTest {
+public class ProdutoTest {
 
     @Test
     public void argumentosInvalidos() {
         assertThrows(IllegalArgumentException.class,
-                () -> new Multiplicacao(null, null));
+                () -> new Produto(null, null));
 
         assertThrows(IllegalArgumentException.class,
-                () -> new Multiplicacao(null, new Constante(2)));
+                () -> new Produto(null, new Constante(2)));
 
         assertThrows(IllegalArgumentException.class,
-                () -> new Multiplicacao(new Constante(1), null));
+                () -> new Produto(new Constante(1), null));
     }
 
     @Test
@@ -38,12 +38,12 @@ public class MultiplicacaoTest {
         assertEquals(0f, variaveis("a", "b").valor(), 0.1d);
     }
 
-    private Multiplicacao constantes(float p1, float p2) {
-        return new Multiplicacao(new Constante(p1), new Constante(p2));
+    private Produto constantes(float p1, float p2) {
+        return new Produto(new Constante(p1), new Constante(p2));
     }
 
-    private Multiplicacao variaveis(String p1, String p2) {
-        return new Multiplicacao(new Variavel(p1), new Variavel(p2));
+    private Produto variaveis(String p1, String p2) {
+        return new Produto(new Variavel(p1), new Variavel(p2));
     }
 }
 
