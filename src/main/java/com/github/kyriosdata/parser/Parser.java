@@ -10,7 +10,6 @@ public class Parser {
     private int corrente = 0;
     private int ultimoToken;
     private List<Token> tokens;
-    private char caractere;
 
     public Parser(List<Token> simbolos) {
         tokens = simbolos;
@@ -53,13 +52,6 @@ public class Parser {
 
         throw new IllegalArgumentException("Nao esperado: "
                 + tokens.get(corrente).getElemento());
-    }
-
-
-    private void consome(char esperado) {
-        if (caractere != esperado) {
-            throw new IllegalArgumentException("Esperado " + caractere);
-        }
     }
 
     private char operador() {
