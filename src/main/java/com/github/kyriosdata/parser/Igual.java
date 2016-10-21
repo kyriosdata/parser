@@ -41,7 +41,8 @@ class Igual implements Expressao {
     }
 
     private boolean saoIguais(float f1, float f2) {
-        return Math.signum(f1 - f2) == 0;
+
+        return Math.abs(f1 - f2) < 0.00001d;
     }
 
     /**

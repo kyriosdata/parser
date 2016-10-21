@@ -31,7 +31,7 @@ class Divisao implements Expressao {
     }
 
     private float divide(float dividendo, float divisor) {
-        if (Math.signum(divisor) == 0) {
+        if (Math.abs(divisor) < 0.00001d) {
             return 0f;
         }
 

@@ -172,7 +172,7 @@ public class Parser {
     }
 
     private Expressao montaExpressao(Expressao e1, String operador, Expressao e2) {
-        if (Lexer.SOMA.equals(operador)) {
+        if (Lexer.SOMA.equals(operador) || Lexer.OU.equals(operador)) {
             return new Soma(e1, e2);
         } else if (Lexer.SUBTRACAO.equals(operador)) {
             return new Subtracao(e1, e2);
@@ -182,8 +182,6 @@ public class Parser {
             return new Divisao(e1, e2);
         } else if (Lexer.E.equals(operador)) {
             return new Produto(e1, e2);
-        } else if (Lexer.OU.equals(operador)) {
-            return new Soma(e1, e2);
         }
 
         // Se não é um dos casos verificados acima,
