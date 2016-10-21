@@ -25,7 +25,7 @@ public class MultiplicacaoTest {
     @Test
     public void multiplicacoesDeConstantesSemContexto() {
         assertEquals(2f, constantes(1f, 2f).valor(), 0.1d);
-        assertEquals(21f, constantes(1f, -20f).valor(), 0.1d);
+        assertEquals(-20f, constantes(1f, -20f).valor(), 0.1d);
     }
 
     @Test
