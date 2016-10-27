@@ -11,9 +11,9 @@ Analisador léxico, sintático e avaliador de expressões matemáticas.
 
 ## Como usar?
 
-### Obtenha a biblioteca
+### Obtenha a versão mais recente
 
-Seu projeto precisa de uma única dependência, indicada abaixo. Alternativamente você pode baixar o arquivo jar correspondente ([download](/com/github/kyriosdata/parser/parser/1.0.0/parser-1.0.0.jar)).
+Seu projeto precisa de uma única dependência, indicada abaixo. Alternativamente você pode baixar o arquivo jar correspondente ([download](https://oss.sonatype.org/service/local/repositories/releases/content/com/github/kyriosdata/parser/parser/1.0.0/parser-1.0.0.jar)).
 
 <pre>
 &lt;dependency&gt;
@@ -23,8 +23,11 @@ Seu projeto precisa de uma única dependência, indicada abaixo. Alternativament
 &lt;/dependency&gt;
 </pre>
 
-### Importe necessário
+### Avaliação de uma expressão
+O _parser_ é o principal componente da biblioteca. Ele recebe uma sequência de _tokens_ produzida pelo _lexer_ e produz como saída uma expressão, que pode ser avaliada.
 
 <pre>
-import com.github.kyriosdata.parser;
+List&lt;Token&gt; tokens = new Lexer(expressao).tokenize();
+Parser parser = new Parser(tokens);
+float resultado = parser.expressao().valor();
 </pre>
