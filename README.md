@@ -13,7 +13,7 @@ Analisador léxico, sintático e avaliador de expressões matemáticas.
 
 ### Obtenha a versão mais recente
 
-Seu projeto precisa de uma única dependência, indicada abaixo. Alternativamente você pode baixar o arquivo jar correspondente ([download](https://oss.sonatype.org/service/local/repositories/releases/content/com/github/kyriosdata/parser/parser/1.0.0/parser-1.0.0.jar)).
+Seu projeto precisa de uma única dependência, indicada abaixo. 
 
 <pre>
 &lt;dependency&gt;
@@ -56,7 +56,7 @@ Expressões admitidas incluem o uso de constantes, variáveis (sequências inici
 - (5 - 3) = (10 / 5)
 
 ## Expressões consideradas inválidas
-Não é permitido o emprego de mais de um operador sem uso de parênteses.
+Não é permitido o emprego de mais de um operador sem uso de parênteses, conforme ilustrado abaixo.
 
 - 10 - 9 - 8
 - 2 + 3 + 4
