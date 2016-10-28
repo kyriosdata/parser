@@ -24,10 +24,21 @@ Seu projeto precisa de uma única dependência, indicada abaixo. Alternativament
 </pre>
 
 ### Avaliação de uma expressão
-O _parser_ é o principal componente da biblioteca. Ele recebe uma sequência de _tokens_ produzida pelo _lexer_ e produz como saída uma expressão, que pode ser avaliada.
+O _parser_ é o principal componente da biblioteca. Ele recebe uma sequência de _tokens_ produzida pelo _lexer_ e produz como saída uma expressão, que pode ser avaliada conforme ilustrado abaixo.
 
 <pre>
-List&lt;Token&gt; tokens = new Lexer(expressao).tokenize();
+List&lt;Token&gt; tokens = new Lexer("2.3 * 10").tokenize();
 Parser parser = new Parser(tokens);
-float resultado = parser.expressao().valor();
+float resultado = parser.expressao().valor(); // 23.0
+</pre>
+
+Expressões podem conter variáveis e, nesse caso, valores a serem utilizados devem ser fornecidos. Caso contrário, o valor 0f é assumido.
+
+<pre>
+Map&lt;String, Float&gt; ctx = new HashMap&lt;&gt;();
+ctx.put("a", 10);
+
+List&lt;Token&gt; tokens = new Lexer("2.3 * a").tokenize();
+Parser parser = new Parser(tokens);
+float resultado = parser.expressao().valor(ctx); // 23.0
 </pre>
