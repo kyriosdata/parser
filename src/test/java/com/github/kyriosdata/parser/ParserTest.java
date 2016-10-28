@@ -23,6 +23,7 @@ public class ParserTest {
         assertThrows(iae, () -> exprPara("x - 1 + 1"));
         assertThrows(iae, () -> exprPara("(x - 1 *"));
         assertThrows(iae, () -> exprPara("x ( a"));
+        assertThrows(iae, () -> exprPara("x a"));
     }
 
     @Test
@@ -49,14 +50,16 @@ public class ParserTest {
 
     @Test
     public void expressaoComDoisOperandosConstantes() {
-        assertEquals(2d, exprPara("1 + 1").valor(new HashMap<>()), 0.001d);
-        assertEquals(0.2d, exprPara("0.11 + 0.09").valor(new HashMap<>()), 0.001d);
-        assertEquals(11d, exprPara("1.1 * 10").valor(new HashMap<>()), 0.001d);
-        assertEquals(314d, exprPara("3.14 * 100").valor(new HashMap<>()), 0.001d);
-        assertEquals(1d, exprPara("1.1 - 0.1").valor(new HashMap<>()), 0.001d);
-        assertEquals(-0.88d, exprPara("1.12 - 2").valor(new HashMap<>()), 0.001d);
-        assertEquals(1.1d, exprPara("1.1 / 1").valor(new HashMap<>()), 0.001d);
-        assertEquals(38.46153d, exprPara("345 / 8.97").valor(new HashMap<>()), 0.001d);
+        HashMap<String, Float> empty = new HashMap<>();
+        assertEquals(2d, exprPara("1 + 1").valor(empty), 0.001d);
+        assertEquals(0.2d, exprPara("0.11 + 0.09").valor(empty), 0.001d);
+        assertEquals(11d, exprPara("1.1 * 10").valor(empty), 0.001d);
+        assertEquals(314d, exprPara("3.14 * 100").valor(empty), 0.001d);
+        assertEquals(1d, exprPara("1.1 - 0.1").valor(empty), 0.001d);
+        assertEquals(-0.88d, exprPara("1.12 - 2").valor(empty), 0.001d);
+        assertEquals(1.1d, exprPara("1.1 / 1").valor(empty), 0.001d);
+        assertEquals(38.46153d, exprPara("345 / 8.97").valor(empty), 0.001d);
+        assertEquals(7d, exprPara("1 * (2 + 5)").valor(empty), 0.001d);
     }
 
     @Test
