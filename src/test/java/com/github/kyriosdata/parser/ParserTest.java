@@ -46,6 +46,7 @@ public class ParserTest {
     @Test
     public void valorZeroParaVariavelNaoDefinida() {
         assertEquals(0d, exprPara("a").valor(new HashMap<>()), 0.001d);
+        assertEquals(0d, exprPara("a").valor(), 0.001d);
     }
 
     @Test

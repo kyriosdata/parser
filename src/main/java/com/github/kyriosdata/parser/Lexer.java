@@ -1,31 +1,82 @@
+/*
+ * Copyright (c) 2016. Fábrica de Software - Instituto de Informática (UFG)
+ * Creative Commons Attribution 4.0 International License.
+ */
+
 package com.github.kyriosdata.parser;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Analisador léxico
+ * Analisador léxico para expressões matemáticas.
  */
 public class Lexer {
 
+    /**
+     * Tipo identificador.
+     */
     public static final int ID = 0;
 
+    /**
+     * Tipo constante.
+     */
     public static final int CONSTANTE = 1;
 
+    /**
+     * Tipo abre parênteses.
+     */
     public static final int ABRE = 2;
 
+    /**
+     * Tipo fecha parênteses.
+     */
     public static final int FECHA = 3;
 
+    /**
+     * Tipo operador.
+     */
     public static final int OPERADOR = 4;
 
+    /**
+     * Tinho desconhecido, nenhum daqueles
+     * previstos.
+     */
     public static final int DESCONHECIDO = 5;
 
+    /**
+     * Texto do token para operador de soma.
+     */
     public static final String SOMA = "+";
+
+    /**
+     * Texto do token para operador de subtração.
+     */
     public static final String SUBTRACAO = "-";
+
+    /**
+     * Texto do token para operador de produto.
+     */
     public static final String PRODUTO = "*";
+
+    /**
+     * Texto do token para operador de divisão.
+     */
     public static final String DIVISAO = "/";
+
+    /**
+     * Texto do token para operador de E lógico.
+     */
     public static final String E = "&";
+
+    /**
+     * Texto do token para operador de OU lógico.
+     */
     public static final String OU = "|";
+
+    /**
+     * Texto do token para operador de igualdade.
+     */
     public static final String IGUAL = "=";
 
 
@@ -34,6 +85,12 @@ public class Lexer {
     private final String expr;
     private final int posicaoUltimoCaractere;
 
+    /**
+     * Cria instância de analisador léxico para a
+     * sentença.
+     * @param sentenca Sentença cuja análise léxica
+     *                 produz uma sequência de tokens.
+     */
     public Lexer(String sentenca) {
         if (sentenca == null) {
             throw new IllegalArgumentException("expressão null");
@@ -51,6 +108,13 @@ public class Lexer {
         posicaoUltimoCaractere = expr.length() - 1;
     }
 
+    /**
+     * Produz, para a sequência a ser analisada lexicamente,
+     * a sequência de tokens correspondente.
+     *
+     * @return Sequência de tokens correspondente à
+     * expressão a ser analisada lexicamente.
+     */
     public List<Token> tokenize() {
         List<Token> tokens = new ArrayList<>();
         caractere = expr.charAt(corrente);

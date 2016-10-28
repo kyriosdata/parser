@@ -1,5 +1,5 @@
 /**
- * Regra e casos específicos de regras, bem como serviços
- * oferecidos para gestão de regras, como configuração.
+ * Componentes de biblioteca para análise léxica,
+ * sintática e avaliação de expressões matemáticas.
  */
 package com.github.kyriosdata.parser;
