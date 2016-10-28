@@ -10,7 +10,7 @@
     <groupId>com.github.kyriosdata.parser</groupId>
     <artifactId>parser</artifactId>
     <packaging>jar</packaging>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 
     <name>com.github.kyriosdata.parser:parser</name>
 

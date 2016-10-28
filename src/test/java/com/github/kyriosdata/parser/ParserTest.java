@@ -61,6 +61,8 @@ public class ParserTest {
         assertEquals(1.1d, exprPara("1.1 / 1").valor(empty), 0.001d);
         assertEquals(38.46153d, exprPara("345 / 8.97").valor(empty), 0.001d);
         assertEquals(7d, exprPara("1 * (2 + 5)").valor(empty), 0.001d);
+        assertEquals(2d, exprPara("1 * (2 + (5 - 5))").valor(empty), 0.001d);
+        assertEquals(1d, exprPara("(5 - 3) = (10 / 5)").valor(empty), 0.001d);
     }
 
     @Test

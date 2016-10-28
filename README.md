@@ -42,3 +42,22 @@ List&lt;Token&gt; tokens = new Lexer("2.3 * a").tokenize();
 Parser parser = new Parser(tokens);
 float resultado = parser.expressao().valor(ctx); // 23.0
 </pre>
+
+## Especificação das expressões
+
+Expressões admitidas incluem o uso de constantes, variáveis (sequências iniciadas por caractere, seguidas ou não de dígitos e abre/fecha parênteses. Os operadores incluem soma, subtração, multiplicação e divisão. Uma expressão também pode ser uma condição e, nesse caso, os operadores são E, OU e igualdade. As expressões lógicas produzem o valor 0 (caso verdadeira) ou diferente de zero (caso falsa). Alguns exemplos são ilustrados abaixo.
+
+- a + b * (x - y)
+- x
+- 10.2
+- a*(b - (c * d))
+- feriado & comDinheiroNoBolso
+- feliz | vitoriaDoTimao
+- (5 - 3) = (10 / 5)
+
+## Expressões consideradas inválidas
+Não é permitido o emprego de mais de um operador sem uso de parênteses.
+
+- 10 - 9 - 8
+- 2 + 3 + 4
+
