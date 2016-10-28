@@ -88,6 +88,7 @@ public class Lexer {
     /**
      * Cria instância de analisador léxico para a
      * sentença.
+     *
      * @param sentenca Sentença cuja análise léxica
      *                 produz uma sequência de tokens.
      */
@@ -123,41 +124,23 @@ public class Lexer {
 
             if (isLetra()) {
                 tokens.add(new Token(ID, identificador()));
-                continue;
-            }
-
-            if (isDigito()) {
+            } else if (isDigito()) {
                 tokens.add(new Token(CONSTANTE, constante()));
-                continue;
-            }
-
-            if (isAbre()) {
+            } else if (isAbre()) {
                 tokens.add(new Token(ABRE, "("));
                 proximoCaractere();
-                continue;
-            }
-
-            if (isFecha()) {
+            } else if (isFecha()) {
                 tokens.add(new Token(FECHA, ")"));
                 proximoCaractere();
-                continue;
-            }
-
-            if (isOperador()) {
+            } else if (isOperador()) {
                 tokens.add(new Token(OPERADOR, operador()));
-                continue;
-            }
-
-            // Se é espaço, então é um separador de tokens.
-            if (caractere == ' ') {
+            } else if (caractere == ' ') { // Espaço é um separador de tokens.
                 proximoCaractere();
-
-                continue;
+            } else {
+                // Se não é nenhum dos casos acima, então é desconhecido.
+                tokens.add(new Token(DESCONHECIDO, Character.toString(caractere)));
+                proximoCaractere();
             }
-
-            // Se não é nenhum dos casos acima, então é desconhecido.
-            tokens.add(new Token(DESCONHECIDO, Character.toString(caractere)));
-            proximoCaractere();
         }
 
         return tokens;
@@ -193,8 +176,8 @@ public class Lexer {
      */
     private boolean isOperador() {
         String supostoOperador = Character.toString(caractere);
-        String ops[] = { SOMA, SUBTRACAO, PRODUTO, DIVISAO, E, OU, IGUAL };
-        for(String operador : ops) {
+        String ops[] = {SOMA, SUBTRACAO, PRODUTO, DIVISAO, E, OU, IGUAL};
+        for (String operador : ops) {
             if (operador.equals(supostoOperador)) {
                 return true;
             }

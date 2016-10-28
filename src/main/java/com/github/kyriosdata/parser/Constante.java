@@ -8,27 +8,28 @@ package com.github.kyriosdata.parser;
 import java.util.Map;
 
 /**
- * Expressão definida por uma constante.
+ * Expressão definida por uma valorFixo.
  */
 class Constante implements Expressao {
-    private final float constante;
+
+    private final float valorFixo;
 
     /**
-     * Cria uma expressão definida por constante.
+     * Cria uma expressão definida por valorFixo.
      *
-     * @param valor O valor da constante.
+     * @param valor O valor da valorFixo.
      */
     public Constante(float valor) {
-        constante = valor;
+        valorFixo = valor;
     }
 
     @Override
     public float valor(Map<String, Float> contexto) {
-        return constante;
+        return valorFixo;
     }
 
     @Override
     public float valor() {
-        return constante;
+        return valorFixo;
     }
 }
