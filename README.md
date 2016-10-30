@@ -8,8 +8,9 @@ Analisador léxico, sintático e avaliador de expressões matemáticas.
 [![Javadocs](http://javadoc.io/badge/com.github.kyriosdata.parser/parser.svg)](http://javadoc.io/doc/com.github.kyriosdata.parser/parser)
 [![Sonarqube](https://sonarqube.com/api/badges/gate?key=com.github.kyriosdata.parser%3Aparser)](https://sonarqube.com/dashboard?id=com.github.kyriosdata.parser%3Aparser)
 
+<br />
 <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>. 
-<br />Fábrica de Software - Instituto de Informática (UFG).
+<br />Fábio Nogueira de Lucena - Fábrica de Software - Instituto de Informática (UFG).
 
 ## Como usar?
 
