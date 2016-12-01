@@ -79,6 +79,16 @@ public class Lexer {
      */
     public static final String IGUAL = "=";
 
+    /**
+     * Texto do token para operador "maior que".
+     */
+    public static final String MAIOR = ">";
+
+    /**
+     * Texto do token para operador "maior que".
+     */
+    public static final String MENOR = "<";
+
 
     private int corrente = 0;
     private char caractere = ' ';
@@ -176,7 +186,7 @@ public class Lexer {
      */
     private boolean isOperador() {
         String supostoOperador = Character.toString(caractere);
-        String ops[] = {SOMA, SUBTRACAO, PRODUTO, DIVISAO, E, OU, IGUAL};
+        String ops[] = {SOMA, SUBTRACAO, PRODUTO, DIVISAO, E, OU, IGUAL, MAIOR, MENOR };
         for (String operador : ops) {
             if (operador.equals(supostoOperador)) {
                 return true;

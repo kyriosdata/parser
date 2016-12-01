@@ -185,6 +185,10 @@ public class Parser {
             return new Produto(e1, e2);
         } else if (Lexer.DIVISAO.equals(operador)) {
             return new Divisao(e1, e2);
+        } else if (Lexer.MAIOR.equals(operador)) {
+            return new Maior(e1, e2);
+        } else if (Lexer.MENOR.equals(operador)) {
+            return new Maior(e2, e1);
         }
 
         // Se não é um dos casos verificados acima,

@@ -112,6 +112,8 @@ public class ParserTest {
         assertEquals(1d, exprPara("v = v").valor(ctx), 0.001d);
         assertEquals(0d, exprPara("v = f").valor(ctx), 0.001d);
         assertEquals(1d, exprPara("f = f").valor(ctx), 0.001d);
+        assertEquals(1d, exprPara("o > p").valor(ctx), 0.001d);
+        assertEquals(1d, exprPara("p < o").valor(ctx), 0.001d);
     }
 
     @Test

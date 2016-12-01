@@ -22,7 +22,7 @@ Seu projeto precisa de uma única dependência, indicada abaixo.
 &lt;dependency&gt;
   &lt;groupId&gt;com.github.kyriosdata.parser&lt;/groupId&gt;
   &lt;artifactId&gt;parser&lt;/artifactId&gt;
-  &lt;version&gt;1.0.1&lt;/version&gt;
+  &lt;version&gt;1.0.2&lt;/version&gt;
 &lt;/dependency&gt;
 </pre>
 
