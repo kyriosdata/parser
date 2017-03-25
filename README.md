@@ -64,3 +64,7 @@ Não é permitido o emprego de mais de um operador sem uso de parênteses, confo
 - 10 - 9 - 8
 - 2 + 3 + 4
 
+***
+
+### Referências
+- [MathParser](http://mathparser.org) é uma inspiração para a presente biblioteca. Contudo, com recursos mais elaborados do que aqueles estabelecidos para o presente projeto. 
