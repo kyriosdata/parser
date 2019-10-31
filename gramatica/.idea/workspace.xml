@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a6b93f46-81c4-4733-a0c3-fef4ead8448b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/testes/trivial.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/expressao.g4" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/gramatica.iml" beforeDir="false" afterPath="$PROJECT_DIR$/gramatica.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
@@ -118,7 +118,7 @@
       <updated>1572524554837</updated>
       <workItem from="1572524556151" duration="63000" />
       <workItem from="1572524633515" duration="87000" />
-      <workItem from="1572524734902" duration="6032000" />
+      <workItem from="1572524734902" duration="6732000" />
     </task>
     <servers />
   </component>
