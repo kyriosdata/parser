@@ -2,14 +2,23 @@ package com.github.kyriosdata.parser;
 
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 class ConstantesTest {
 
     @Test
-    void trivial() {
-        Expressao exp = Expressao.from("1 + x * (z - 2)");
+    void constanteTrivialNegativa() {
+        Expressao exp = Expressao.from("-9");
+        assertEquals(0, exp.getVariaveis().size());
+        assertEquals("-9", exp.getPosfixada().get(0));
+        assertEquals("-9", exp.getEntrada());
+    }
 
-        System.out.println("ENTRADA: " + exp.getEntrada());
-        System.out.println("POS-FIXADA: " + exp.getPostFix());
-        System.out.println("VARIAVEIS: " + exp.getVariaveis());
+    @Test
+    void trivial() {
+        Expressao exp = Expressao.from("1");
+        assertEquals(0, exp.getVariaveis().size());
+        assertEquals("1", exp.getPosfixada().get(0));
+        assertEquals("1", exp.getEntrada());
     }
 }

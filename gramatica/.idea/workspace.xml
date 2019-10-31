@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a6b93f46-81c4-4733-a0c3-fef4ead8448b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/kyriosdata/parser/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/github/kyriosdata/parser/Application.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/kyriosdata/parser/ExpressaoProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/github/kyriosdata/parser/Expressao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/kyriosdata/parser/Application.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/kyriosdata/parser/Expressao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/github/kyriosdata/parser/Expressao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/com/github/kyriosdata/parser/ConstantesTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/github/kyriosdata/parser/ConstantesTest.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -120,7 +121,7 @@
       <workItem from="1572524556151" duration="63000" />
       <workItem from="1572524633515" duration="87000" />
       <workItem from="1572524734902" duration="7919000" />
-      <workItem from="1572539767788" duration="11037000" />
+      <workItem from="1572539767788" duration="12052000" />
     </task>
     <servers />
   </component>
