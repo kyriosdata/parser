@@ -199,28 +199,6 @@
 				</executions>
 			</plugin>
 
-			<plugin>
-				<groupId>com.khubla.antlr</groupId>
-				<artifactId>antlr4test-maven-plugin</artifactId>
-				<version>${antlrtest.version}</version>
-				<configuration>
-					<verbose>false</verbose>
-					<showTree>false</showTree>
-					<entryPoint>sentenca</entryPoint>
-					<grammarName>expressao</grammarName>
-					<packageName></packageName>
-					<testFileExtension>.txt</testFileExtension>
-					<exampleFiles>testes/</exampleFiles>
-				</configuration>
-				<executions>
-					<execution>
-						<goals>
-							<goal>test</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-
 			<!-- spotbugs -->
 			<!-- mvn compile           -->
 			<!-- mvn spotbugs:spotbugs -->

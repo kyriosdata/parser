@@ -3,9 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="a6b93f46-81c4-4733-a0c3-fef4ead8448b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/antlr4/com/github/kyrosdata/parser/Expressao.g4" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/antlr4/com/github/kyrosdata/parser/Expressao.g4" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/kyriosdata/parser/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/github/kyriosdata/parser/Application.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/kyriosdata/parser/ExpressaoListenerOverriding.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/github/kyriosdata/parser/ExpressaoListenerOverriding.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -75,7 +73,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JUnit.ConstantesTest">
     <configuration name="Application" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.github.kyriosdata.parser.Application" />
       <module name="gramatica" />
@@ -89,8 +87,24 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="ConstantesTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="gramatica" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.github.kyriosdata.parser.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.github.kyriosdata.parser" />
+      <option name="MAIN_CLASS_NAME" value="com.github.kyriosdata.parser.ConstantesTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ConstantesTest" />
         <item itemvalue="Application.Application" />
       </list>
     </recent_temporary>
@@ -105,7 +119,7 @@
       <workItem from="1572524556151" duration="63000" />
       <workItem from="1572524633515" duration="87000" />
       <workItem from="1572524734902" duration="7919000" />
-      <workItem from="1572539767788" duration="8748000" />
+      <workItem from="1572539767788" duration="10246000" />
     </task>
     <servers />
   </component>
