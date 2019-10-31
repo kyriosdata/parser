@@ -5,9 +5,13 @@ import com.github.kyrosdata.parser.ExpressaoLexer;
 import com.github.kyrosdata.parser.ExpressaoParser;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.Stack;
 
-public class ExpressaoListenerOverriding extends ExpressaoBaseListener {
+public class ExpressaoProcessor extends ExpressaoBaseListener {
 
     private List<String> postFix = new ArrayList<>();
     private Stack<Integer> contadores = new Stack<>();

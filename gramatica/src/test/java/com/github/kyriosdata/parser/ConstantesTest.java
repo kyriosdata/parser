@@ -9,7 +9,7 @@ import org.antlr.v4.runtime.tree.ParseTreeWalker;
 import org.junit.jupiter.api.Test;
 
 class ConstantesTest {
-    
+
     @Test
     void trivial() {
         String exp = "1 + x * (z - 2)";
@@ -19,8 +19,8 @@ class ConstantesTest {
         ParseTree tree = parser.sentenca();
 
         ParseTreeWalker walker = new ParseTreeWalker();
-        ExpressaoListenerOverriding listener =
-                new ExpressaoListenerOverriding();
+        ExpressaoProcessor listener =
+                new ExpressaoProcessor();
 
         walker.walk(listener, tree);
 
