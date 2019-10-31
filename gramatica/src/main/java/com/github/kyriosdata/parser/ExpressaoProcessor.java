@@ -4,6 +4,7 @@ import com.github.kyrosdata.parser.ExpressaoBaseListener;
 import com.github.kyrosdata.parser.ExpressaoLexer;
 import com.github.kyrosdata.parser.ExpressaoParser;
 import org.antlr.v4.runtime.CharStreams;
+import org.antlr.v4.runtime.CodePointCharStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
@@ -21,6 +22,7 @@ public class ExpressaoProcessor extends ExpressaoBaseListener {
     private Stack<Integer> contadores = new Stack<>();
     private Stack<String> operadores = new Stack<>();
     private Set<String> variaveis = new HashSet<>();
+    private String entrada;
 
     public List<String> getPostFix() {
         return postFix;
@@ -30,9 +32,13 @@ public class ExpressaoProcessor extends ExpressaoBaseListener {
         return variaveis;
     }
 
-    public static ExpressaoProcessor run() {
-        String exp = "1 + x * (z - 2)";
-        ExpressaoLexer lexer = new ExpressaoLexer(CharStreams.fromString(exp));
+    public String getEntrada() {
+        return entrada;
+    }
+
+    public static ExpressaoProcessor run(String exp) {
+        CodePointCharStream input = CharStreams.fromString(exp);
+        ExpressaoLexer lexer = new ExpressaoLexer(input);
         CommonTokenStream tokens = new CommonTokenStream(lexer);
         ExpressaoParser parser = new ExpressaoParser(tokens);
         ParseTree tree = parser.sentenca();
@@ -41,6 +47,7 @@ public class ExpressaoProcessor extends ExpressaoBaseListener {
         ExpressaoProcessor listener =
                 new ExpressaoProcessor();
 
+        listener.entrada = exp;
         walker.walk(listener, tree);
 
         return listener;
