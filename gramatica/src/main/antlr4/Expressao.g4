@@ -1,5 +1,5 @@
 // Gramática para expressões matemáticas
-grammar expressao;
+grammar Expressao;
 
 // Sentença válida é uma equação (comparação) ou simples expressão
 sentenca : ( equacao | expr );
