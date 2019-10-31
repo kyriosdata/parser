@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a6b93f46-81c4-4733-a0c3-fef4ead8448b" name="Default Changelist" comment="" />
+    <list default="true" id="a6b93f46-81c4-4733-a0c3-fef4ead8448b" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/testes/trivial.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gramatica.iml" beforeDir="false" afterPath="$PROJECT_DIR$/gramatica.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,7 +30,9 @@
     </option>
   </component>
   <component name="ProjectId" id="1Sy8cb9jjNgDRataotGValHdMav" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="PropertiesComponent">
     <property name="$PROJECT_DIR$/arithmetic.g4::/auto-gen" value="true" />
     <property name="$PROJECT_DIR$/arithmetic.g4::/gen-listener" value="true" />
@@ -111,7 +118,7 @@
       <updated>1572524554837</updated>
       <workItem from="1572524556151" duration="63000" />
       <workItem from="1572524633515" duration="87000" />
-      <workItem from="1572524734902" duration="4510000" />
+      <workItem from="1572524734902" duration="6032000" />
     </task>
     <servers />
   </component>

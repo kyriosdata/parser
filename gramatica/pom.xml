@@ -65,6 +65,8 @@
 
 		<tools.dir>${project.basedir}/tools</tools.dir>
 
+		<antlr.version>4.7.2</antlr.version>
+		<antlrtest.version>1.11</antlrtest.version>
 		<checkstyle.plugin.versao>3.1.0</checkstyle.plugin.versao>
 		<checkstyle.versao>8.25</checkstyle.versao>
 		<dependency.check.versao>5.2.2</dependency.check.versao>
@@ -155,8 +157,44 @@
 		<plugins>
 
 			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
+				<groupId>org.antlr</groupId>
+				<artifactId>antlr4-maven-plugin</artifactId>
+				<version>${antlr.version}</version>
+				<configuration>
+					<sourceDirectory>${basedir}</sourceDirectory>
+					<grammars>expressao.g4</grammars>
+					<visitor>true</visitor>
+					<listener>true</listener>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>antlr4</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>com.khubla.antlr</groupId>
+				<artifactId>antlr4test-maven-plugin</artifactId>
+				<version>${antlrtest.version}</version>
+				<configuration>
+					<verbose>false</verbose>
+					<showTree>false</showTree>
+					<entryPoint>sentenca</entryPoint>
+					<grammarName>expressao</grammarName>
+					<packageName></packageName>
+					<testFileExtension>.txt</testFileExtension>
+					<exampleFiles>testes/</exampleFiles>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>test</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 
 			<!-- spotbugs -->
