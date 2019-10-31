@@ -9,7 +9,7 @@ import org.antlr.v4.runtime.tree.ParseTreeWalker;
 
 public class Application {
     public static void main(String[] args) {
-        String exp = "1 + x";
+        String exp = "1 + x * (z - 2)";
         ExpressaoLexer lexer = new ExpressaoLexer(CharStreams.fromString(exp));
         CommonTokenStream tokens = new CommonTokenStream(lexer);
         ExpressaoParser parser = new ExpressaoParser(tokens);
@@ -20,5 +20,9 @@ public class Application {
                 new ExpressaoListenerOverriding();
 
         walker.walk(listener, tree);
+
+        System.out.println("ENTRADA: " + exp);
+        System.out.println("POS-FIXADA: " + listener.getPostFix());
+        System.out.println("VARIAVEIS: " + listener.getVariaveis());
     }
 }

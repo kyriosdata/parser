@@ -2,12 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a6b93f46-81c4-4733-a0c3-fef4ead8448b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/github/kyriosdata/parser/Application.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/github/kyriosdata/parser/ExpressaoListenerOverriding.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gramatica.iml" beforeDir="false" afterPath="$PROJECT_DIR$/gramatica.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/antlr4/Expressao.g4" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/antlr4/com/github/kyrosdata/parser/Expressao.g4" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/antlr4/com/github/kyrosdata/parser/Expressao.g4" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/antlr4/com/github/kyrosdata/parser/Expressao.g4" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/kyriosdata/parser/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/github/kyriosdata/parser/Application.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/kyriosdata/parser/ExpressaoListenerOverriding.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/github/kyriosdata/parser/ExpressaoListenerOverriding.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -58,7 +56,7 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
-    <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
+    <property name="settings.editor.selected.configurable" value="Errors" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -107,7 +105,7 @@
       <workItem from="1572524556151" duration="63000" />
       <workItem from="1572524633515" duration="87000" />
       <workItem from="1572524734902" duration="7919000" />
-      <workItem from="1572539767788" duration="2550000" />
+      <workItem from="1572539767788" duration="8748000" />
     </task>
     <servers />
   </component>

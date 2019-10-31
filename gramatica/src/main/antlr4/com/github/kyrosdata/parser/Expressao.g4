@@ -10,8 +10,8 @@ equacao
 
 expr
    :  expr POTENCIA expr
-   |  expr  (MULTIPLICACAO | DIVISAO)  expr
-   |  expr  (SOMA | SUBTRACAO) expr
+   |  expr (MULTIPLICACAO | DIVISAO) expr
+   |  expr (ADICAO | SUBTRACAO) expr
    |  ABRE expr FECHA
    |  (SUBTRACAO)? operando
    ;
@@ -89,7 +89,7 @@ FECHA
    ;
 
 
-SOMA
+ADICAO
    : '+'
    ;
 
