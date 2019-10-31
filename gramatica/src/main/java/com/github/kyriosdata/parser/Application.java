@@ -16,8 +16,8 @@ public class Application {
         ParseTree tree = parser.sentenca();
 
         ParseTreeWalker walker = new ParseTreeWalker();
-        ExpressaoProcessor listener =
-                new ExpressaoProcessor();
+        Expressao listener =
+                new Expressao();
 
         walker.walk(listener, tree);
 

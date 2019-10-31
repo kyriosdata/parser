@@ -6,7 +6,7 @@ class ConstantesTest {
 
     @Test
     void trivial() {
-        ExpressaoProcessor exp = ExpressaoProcessor.run("1 + x * (z - 2)");
+        Expressao exp = Expressao.from("1 + x * (z - 2)");
 
         System.out.println("ENTRADA: " + exp.getEntrada());
         System.out.println("POS-FIXADA: " + exp.getPostFix());

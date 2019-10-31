@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.Stack;
 
-public class ExpressaoProcessor extends ExpressaoBaseListener {
+public class Expressao extends ExpressaoBaseListener {
 
     private List<String> postFix = new ArrayList<>();
     private Stack<Integer> contadores = new Stack<>();
@@ -36,7 +36,7 @@ public class ExpressaoProcessor extends ExpressaoBaseListener {
         return entrada;
     }
 
-    public static ExpressaoProcessor run(String exp) {
+    public static Expressao from(String exp) {
         CodePointCharStream input = CharStreams.fromString(exp);
         ExpressaoLexer lexer = new ExpressaoLexer(input);
         CommonTokenStream tokens = new CommonTokenStream(lexer);
@@ -44,8 +44,8 @@ public class ExpressaoProcessor extends ExpressaoBaseListener {
         ParseTree tree = parser.sentenca();
 
         ParseTreeWalker walker = new ParseTreeWalker();
-        ExpressaoProcessor listener =
-                new ExpressaoProcessor();
+        Expressao listener =
+                new Expressao();
 
         listener.entrada = exp;
         walker.walk(listener, tree);
