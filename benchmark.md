@@ -1,6 +1,15 @@
-# Arquivo de teste
+# Benchmark
+Além de permitir a validação de uma implementação de um avaliador de express
+ões, o presente _benchmark_ também considera relevante outros aspectos:
+- Desempenho. Tempo gasto para avaliação de uma expressão.
+- Memória. Consumo de memória incorrido ao avaliar expressões.
+- Preparação. Tempo gasto para pré-processamento de uma expressão, caso
+ exista esta opção, sem incluir o tempo consumido na avaliação da expressão. 
 
-Arquivo CSV contendo três colunas, na ordem descrita abaixo:
+# Validação da correção
+
+A validação da correção de uma implementação será fornecidapor meio de um
+ arquivo CSV contendo três colunas, na ordem descrita abaixo:
 
 - Expressão. Por exemplo, 2*(3-x).
 - Variáveis. Valores das variáveis a serem utilizadas na avaliação da expressão
