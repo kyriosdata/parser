@@ -106,6 +106,47 @@ class GeradorTest {
         System.out.println(clazz.getName());
         System.out.println(retorno);
     }
+
+    @Test
+    void c() throws IOException, NoSuchMethodException,
+            InvocationTargetException, IllegalAccessException {
+        ClassWriter cw = new ClassWriter(0);
+        cw.visit(V11, ACC_PUBLIC, "C", null, "java/lang/Object", null);
+
+        final int PUBLIC_STATIC = ACC_PUBLIC + ACC_STATIC;
+        MethodVisitor main = cw.visitMethod(PUBLIC_STATIC, "calcule",
+                "(DD)D", null, null);
+        main.visitCode();
+
+        main.visitCode();
+        main.visitVarInsn(DLOAD, 0);
+        main.visitVarInsn(DLOAD, 2);
+        main.visitInsn(DADD);
+        main.visitInsn(DRETURN);
+        main.visitMaxs(4, 4);
+        main.visitEnd();
+        cw.visitEnd();
+
+        byte[] bytecodes = cw.toByteArray();
+
+        Path dirCorrente = FileSystems.getDefault().getPath(".");
+        final Path path = Path.of(dirCorrente.toString(), "C.class");
+
+        try (FileOutputStream outputStream =
+                     new FileOutputStream(path.toString())) {
+            outputStream.write(bytecodes);
+        }
+
+        // Carregando a classe e executando o método
+        DynamicClassLoader loader = new DynamicClassLoader();
+        Class<?> clazz = loader.defineClass("C", bytecodes);
+        Class<?>[] tipos = new Class[] { Double.TYPE, Double.TYPE };
+        Method method = clazz.getDeclaredMethod("calcule", tipos);
+        Object[] params = { 1.9, 7.1 };
+        Object retorno = method.invoke(null, params);
+        System.out.println(clazz.getName());
+        System.out.println(retorno);
+    }
 }
 
 
@@ -114,7 +155,7 @@ class DynamicClassLoader extends ClassLoader {
         return defineClass(name, b, 0, b.length);
     }
 
-    public static int calcule(int x, int y) {
+    public static double calcule(double x, double y) {
         return x + y;
     }
 }
