@@ -3,9 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="a6b93f46-81c4-4733-a0c3-fef4ead8448b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/kyriosdata/parser/Application.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/kyriosdata/parser/Expressao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/github/kyriosdata/parser/Expressao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/github/kyriosdata/parser/ConstantesTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/github/kyriosdata/parser/ConstantesTest.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -46,7 +43,7 @@
     <property name="$PROJECT_DIR$/arithmetic.g4::/gen-visitor" value="false" />
     <property name="$PROJECT_DIR$/arithmetic.g4::/language" value="Java" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="E:/arlang" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -122,6 +119,10 @@
       <workItem from="1572524633515" duration="87000" />
       <workItem from="1572524734902" duration="7919000" />
       <workItem from="1572539767788" duration="12052000" />
+      <workItem from="1572607793289" duration="427000" />
+      <workItem from="1572608242266" duration="1097000" />
+      <workItem from="1572610925201" duration="18000" />
+      <workItem from="1572628664806" duration="37000" />
     </task>
     <servers />
   </component>
