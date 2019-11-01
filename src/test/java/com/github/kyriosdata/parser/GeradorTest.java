@@ -96,7 +96,7 @@ class GeradorTest {
             outputStream.write(bytecodes);
         }
 
-        // Carregando e executando a classe criada dinamicamente
+        // Carregando a classe e executando o método
         DynamicClassLoader loader = new DynamicClassLoader();
         Class<?> clazz = loader.defineClass("B", bytecodes);
         Class<?>[] tipos = new Class[] { Integer.TYPE, Integer.TYPE };
