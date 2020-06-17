@@ -75,5 +75,6 @@ Não é permitido o emprego de mais de um operador sem uso de parênteses, confo
 
 ***
 
-### Referências
+### Referências, links
 - [MathParser](http://mathparser.org) é uma inspiração para a presente biblioteca. Contudo, com recursos mais elaborados do que aqueles estabelecidos para o presente projeto. 
+- [exp4j](https://lallafa.objecthunter.net/exp4j/)
